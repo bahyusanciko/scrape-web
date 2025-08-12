@@ -4,24 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Snscrape Web - A web interface for managing and visualizing social media scraping tasks using snscrape.">
-    <meta name="keywords" content="snscrape, web scraping, social media, dashboard, data visualization">
+    <meta name="description" content="Scrape Web - A web interface for managing and visualizing social media scraping tasks using Scrape.">
+    <meta name="keywords" content="Scrape, web scraping, social media, dashboard, data visualization">
     <meta name="author" content="Bahyu Sanciko">
     <meta name="theme-color" content="#4F46E5">
-    <meta name="application-name" content="Snscrape Web">
-    <meta name="apple-mobile-web-app-title" content="Snscrape Web">
+    <meta name="application-name" content="Scrape Web">
+    <meta name="apple-mobile-web-app-title" content="Scrape Web">
     <meta name="msapplication-TileColor" content="#4F46E5">
     <meta name="msapplication-config" content="/browserconfig.xml">
     <meta name="theme-color" content="#4F46E5">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#4F46E5">
-    <title>{{ config('app.name', 'Snscrape Web') }} - @yield('title', 'Dashboard')</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="icon" href="{{ asset('images/favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+    <link rel="mask-icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" color="#4F46E5">
+    <title>{{ config('app.name', 'Scrape Web') }} - @yield('title', 'Dashboard')</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -46,8 +49,9 @@
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="{{ route('dashboard') }}" class="text-xl font-bold text-indigo-600">
-                                Snscrape Web
+                            <a href="{{ route('dashboard') }}" class="text-xl font-bold text-indigo-600 flex items-center space-x-2">
+                                <img src="{{ asset('images/favicon/favicon-32x32.png') }}" alt="Scrape Web Logo" class="h-7 w-7" />
+                                <span>Scrape Web</span>
                             </a>
                         </div>
                         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -95,7 +99,7 @@
     <footer class="bg-white border-t mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between text-sm text-gray-500">
             <div class="flex items-center space-x-2">
-                <span>&copy; {{ date('Y') }} Snscrape Web. All rights reserved.</span>
+                <span>&copy; {{ date('Y') }} Scrape Web. All rights reserved.</span>
             </div>
             <div class="mt-2 sm:mt-0 flex items-center space-x-1">
                 <span>V {{ config('app.version', '1.0.0') }}</span>

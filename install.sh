@@ -76,11 +76,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
-    echo "📦 Creating Python virtual environment..."
-    python3 -m venv venv
-fi
 
 # Remove broken venv if exists
 if [ -d "venv" ]; then
