@@ -41,11 +41,11 @@ class SnscrapeService
         ],
     ];
 
-    protected string $path;
+    protected string $pathVenv;
 
     public function __construct()
     {
-        $this->path = base_path('venv/');
+        $this->pathVenv = base_path('venv/');
     }
 
     public function getSupportedPlatforms(): array
@@ -137,23 +137,16 @@ class SnscrapeService
             throw new \Exception("Unsupported platform/scraper combination: {$job->platform}/{$job->scraper_type}");
         }
 
-        // Use virtual environment if available
-                    if (is_dir($this->path)) {
-            $command = [$this->path . './bin/snscrape', '--jsonl', $scraperName, $job->target];
+        $snscrapePath = $this->getSnscrapePath();
 
-            if ($job->max_results) {
-                $command = [$this->path . './bin/snscrape', '--jsonl', '--max-results', $job->max_results, $scraperName, $job->target];
-            }
-        } else {
-            // Fallback to system snscrape
-            $command = ['snscrape', '--jsonl', $scraperName, $job->target];
-
-            if ($job->max_results) {
-                $command = ['snscrape', '--jsonl', '--max-results', $job->max_results, $scraperName, $job->target];
-            }
+        $command = [$snscrapePath, '--jsonl', $scraperName, $job->target];
+        if ($job->max_results) {
+            $command = [$snscrapePath, '--jsonl', '--max-results', $job->max_results, $scraperName, $job->target];
         }
+
         return $command;
     }
+
 
     protected function parseOutput(string $output, string $platform): array
     {
@@ -282,8 +275,8 @@ class SnscrapeService
     public function checkSnscrapeInstallation(): bool
     {
         // Check virtual environment first
-        if (is_dir($this->path)) {
-            $process = new Process([$this->path . './bin/snscrape', '--help']);
+        if (is_dir($this->pathVenv)) {
+            $process = new Process([$this->pathVenv . './bin/snscrape', '--help']);
             $process->run();
 
             if ($process->isSuccessful()) {
@@ -301,8 +294,8 @@ class SnscrapeService
     public function getSnscrapeVersion(): ?string
     {
         // Check virtual environment first
-        if (is_dir($this->path)) {
-            $process = new Process([$this->path . './bin/snscrape', '--version']);
+        if (is_dir($this->pathVenv)) {
+            $process = new Process([$this->pathVenv . './bin/snscrape', '--version']);
             $process->run();
             if ($process->isSuccessful()) {
                 return trim($process->getOutput());
@@ -321,16 +314,18 @@ class SnscrapeService
 
     public function getSnscrapePath(): string
     {
-        if (is_dir($this->path)) {
-            return $this->path . './bin/snscrape';
+        if (is_dir($this->pathVenv)) {
+            return rtrim($this->pathVenv, '/').'/bin/snscrape';
         }
 
         return 'snscrape';
     }
 
+
     public function getPythonVersion(): ?string
     {
-        $process = new Process(['python3', '--version']);
+        $pythonPath = is_dir($this->pathVenv) ? rtrim($this->pathVenv, '/').'/bin/python3' : 'python3';
+        $process = new Process([$pythonPath, '--version']);
         $process->run();
 
         if ($process->isSuccessful()) {
@@ -339,6 +334,7 @@ class SnscrapeService
 
         return null;
     }
+
 
     public function getCompatibilityStatus(): array
     {

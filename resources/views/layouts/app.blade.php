@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
     <link rel="mask-icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" color="#4F46E5">
-    <title>{{ config('app.name', 'Scrape Web') }} - @yield('title', 'Dashboard')</title>
+    <title>Scrape - @yield('title', 'Dashboard')</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
