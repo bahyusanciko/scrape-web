@@ -1,80 +1,62 @@
 # Scrape Web Application
 
-A powerful Laravel web application that delivers an intuitive, user-friendly interface for advanced social media scraping using the robusts Python library. Effortlessly collect and analyze data from multiple social media platforms through a seamless and efficient web experience.
+A powerful Laravel web application that delivers an intuitive, user-friendly interface for advanced social media scraping using the robust Python library `snscrape`.  
+Effortlessly collect and analyze data from multiple social media platforms through a seamless and efficient web experience.
 
-## Features
+---
 
-- **Multi-Platform Support**: Scrape data from Twitter, Instagram, Facebook, Reddit, Telegram, Mastodon, and more
-- **Job Management**: Create, monitor, and manage scraping jobs
-- **Data Visualization**: View and analyze scraped data with statistics and insights
-- **Export Options**: Export data in JSON and CSV formats
-- **Real-time Status**: Monitor job progress and execution status
-- **Modern UI**: Beautiful, responsive interface built with Tailwind CSS and Alpine.js
+## ✨ Features
 
-## Supported Platforms
+- **Multi-Platform Support**: Scrape data from Twitter, Instagram, Facebook, Reddit, Telegram, Mastodon, and more.
+- **Job Management**: Create, monitor, and manage scraping jobs.
+- **Data Visualization**: View and analyze scraped data with statistics and insights.
+- **Export Options**: Export data in JSON and CSV formats.
+- **Real-time Status**: Monitor job progress and execution status.
+- **Modern UI**: Beautiful, responsive interface built with Tailwind CSS and Alpine.js.
 
-- **Twitter**: Users, hashtags, searches, lists
-- **Instagram**: Users, hashtags, locations
-- **Facebook**: Users, groups, communities
-- **Reddit**: Users, subreddits, searches
-- **Telegram**: Channels
-- **Mastodon**: Users, toots
+---
 
-## Prerequisites
+## 📌 Supported Platforms
 
-- PHP 8.1 or higher
-- Composer
-- Python 3.8 or higher
-- snscrape (Python package)
+- **Twitter**: Users, hashtags, searches, lists  
+- **Instagram**: Users, hashtags, locations  
+- **Facebook**: Users, groups, communities  
+- **Reddit**: Users, subreddits, searches  
+- **Telegram**: Channels  
+- **Mastodon**: Users, toots  
+
+---
+
+## 🛠 Tech Stack
+
+- **Backend**: Laravel 12 (PHP 8.2, PHP-FPM)  
+- **Frontend**: Tailwind CSS, Alpine.js  
+- **Database**: SQLite  
+- **Web Server**: Nginx  
+- **Scraping Engine**: Python 3.11 + snscrape  
 
 ## Installation
 
-### 1. Clone the Repository
-
+### 1. 📥 Clone the Repository
 ```bash
 git clone https://github.com/bahyusanciko/scrape-web
 cd scrape-web
 ```
 
-### 2. Install PHP Dependencies
-
-```bash
-composer install
-```
-
-### 3. Install snscrape
-
-```bash
-pip install snscrape
-```
-
-### 4. Environment Setup
-
+### 2. 📋 Copy Environment File
 ```bash
 cp .env.example .env
-php artisan key:generate
 ```
 
-Update the `.env` file with your database configuration:
-
-```env
-DB_CONNECTION=sqlite
-DB_DATABASE=/path/to/your/database.sqlite
-```
-
-### 5. Database Setup
-
+### 3. 🚀 Installation (Docker Build and Start Containers)
 ```bash
-php artisan migrate
+docker compose build
+docker compose up -d
 ```
 
-### 6. Start the Development Server
+### 4. 🌐 Access the Web Application
+http://localhost:6666
 
-```bash
-php artisan serve
-```
-
-The application will be available at `http://localhost:8000`
 
 ## Usage
 
