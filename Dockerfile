@@ -1,33 +1,23 @@
 FROM php:8.2-fpm
 
-WORKDIR /var/www
-
-# Install dependencies
+# 1. Install dependencies dasar + Python 3.12 (tanpa PPA)
 RUN apt-get update && apt-get install -y \
-    libsqlite3-dev unzip git curl nodejs npm \
-    python3 python3-pip python3-venv python3-dev \
+    lsb-release \
+    gnupg \
+    libsqlite3-dev unzip git curl nodejs npm python3 python3-venv python3-dev python3-pip \
     && docker-php-ext-install pdo pdo_mysql pdo_sqlite \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Composer
+# 2. Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Buat virtual environment Python
+# 3. Buat virtual environment Python untuk snscrape
 RUN python3 -m venv /var/www/venv \
     && /var/www/venv/bin/pip install --upgrade pip \
-    && /var/www/venv/bin/pip install snscrape requests \
-    && echo 'source /var/www/venv/bin/activate' >> /root/.bashrc
+    && /var/www/venv/bin/pip install snscrape requests
 
-# Copy project
-COPY . .
+# 4. Set working directory Laravel
+WORKDIR /var/www
 
-# Install Laravel dependencies
-RUN composer install --no-interaction --prefer-dist
-
-# Install frontend dependencies
-RUN npm install && npm run build
-
-# Set permission Laravel
-RUN chown -R www-data:www-data storage bootstrap/cache
-
+EXPOSE 9000
 CMD ["php-fpm"]
